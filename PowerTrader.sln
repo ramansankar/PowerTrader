@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trader2020", "Trader2020\Trader2020.csproj", "{8514B3EC-B97F-4A62-8247-C27D9F6FA2F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerTrader", "PowerTrader\PowerTrader.csproj", "{BDE49647-C9A9-49C4-BC5A-03A3D277911F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8514B3EC-B97F-4A62-8247-C27D9F6FA2F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8514B3EC-B97F-4A62-8247-C27D9F6FA2F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8514B3EC-B97F-4A62-8247-C27D9F6FA2F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8514B3EC-B97F-4A62-8247-C27D9F6FA2F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDE49647-C9A9-49C4-BC5A-03A3D277911F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDE49647-C9A9-49C4-BC5A-03A3D277911F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDE49647-C9A9-49C4-BC5A-03A3D277911F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDE49647-C9A9-49C4-BC5A-03A3D277911F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FAD153B-9F12-4D61-B2E2-11209E6F85B2}
+	EndGlobalSection
+EndGlobal
