@@ -25,5 +25,6 @@ namespace PowerTrader.Model
 
         public DataBar(StockDataPoint stockDataPoint) : this(stockDataPoint.Time, stockDataPoint.OpeningPrice, stockDataPoint.ClosingPrice , stockDataPoint.HighestPrice, stockDataPoint.LowestPrice, stockDataPoint.Volume) { }
 
+        
     }
 }

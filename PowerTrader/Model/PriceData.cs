@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Dynamic;
 
 namespace PowerTrader.Model
 {
@@ -11,7 +12,15 @@ namespace PowerTrader.Model
         public ObservableCollection<DataBar> SecurityPriceData {get; set; }
         public List<IIndicator> Indicators {get; set; }
         
-
+        public List<dynamic> AsDynamic()
+        {
+            var DynamicList = new List<dynamic>();
+            foreach (DataBar db in SecurityPriceData)
+            {
+                DynamicList.Add(db.ToDynamic<DataBar>());
+            }
+            return DynamicList;
+        }
 
         #region  C O N S T R U C T O R
         public PriceData(DataRequest dataRequest)
@@ -42,7 +51,10 @@ namespace PowerTrader.Model
             OnPriceDataChanged(e);
         }
 
+
         
+
+
         #endregion  C O N S T R U C T O R
 
 

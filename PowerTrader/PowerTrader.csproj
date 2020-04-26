@@ -88,6 +88,7 @@
     <Compile Include="Model\DataBar.cs" />
     <Compile Include="Model\DataRequest.cs" />
     <Compile Include="Model\PriceData.cs" />
+    <Compile Include="Model\DataBarHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Constants.cs" />
   </ItemGroup>
