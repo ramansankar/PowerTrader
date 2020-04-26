@@ -11,7 +11,7 @@ namespace PowerTrader.Interface
     interface IDataRetreiver
     {
 
-        System.Threading.Tasks.Task<List<DataBar>> GetHistoricalDataAsync(SecurityType securityType, string ticker, BarSize barSize, DateTime? endDate= null );
+        Task<PriceData> GetHistoricalDataAsync(DataRequest Request);
         string GetApiKey();
     }
 }

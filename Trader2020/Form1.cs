@@ -1,6 +1,8 @@
-﻿using PowerTrader.Model;
+﻿using PowerTrader.Enumerator;
+using PowerTrader.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -8,23 +10,31 @@ namespace Trader2020
 {
     public partial class Form1 : Form
     {
-        List<DataBar> Data = new List<DataBar>();
+        PriceData Data = new PriceData(); 
         public Form1()
         {
             InitializeComponent();
+            
         }
 
         private async void button1_Click(object sender, EventArgs e)
         {
               DoLoadJob();
+               
         }
         private async void DoLoadJob()
         {
             var a = new PowerTrader.Class.AlphaVantageDataRetreiver();
-            Data = await a.GetHistoricalDataAsync(PowerTrader.Enumerator.SecurityType.STOCK, "AAPL", PowerTrader.Enumerator.BarSize.DAY, null);
+            var Request = new DataRequest("AAPL", SecurityType.STOCK ,  BarSize.DAY);
+            //Data = new PriceData(Request);
+            
 
 
-            var result = Data
+            Data = await a.GetHistoricalDataAsync(Request);
+            
+
+
+            var result = Data.SecurityPriceData 
                 .Select(r => new
                 {
                     r.PriceDate,
@@ -36,13 +46,20 @@ namespace Trader2020
                 }).ToList();
 
             dataGridView1.DataSource = result;
-            MessageBox.Show(Data.Count + " records retreived");
+            MessageBox.Show(Data.SecurityPriceData.Count + " records retreived");
         }
 
-        
+         
+         
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Data.PriceDataChanged  += Data_PriceDataChanged1;
+        }
+
+        private void Data_PriceDataChanged1(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            MessageBox.Show("Happened");
 
         }
     }

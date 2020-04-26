@@ -8,6 +8,6 @@ namespace PowerTrader.Enumerator
 {
     public enum SecurityType
     {
-        STOCK,OPTION,FOREX,CRYPTO,COMMODITY
+        NONE, STOCK,OPTION,FOREX,CRYPTO,COMMODITY
     }
 }

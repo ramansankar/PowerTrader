@@ -1,4 +1,7 @@
-﻿namespace Trader2020
+﻿using PowerTrader.Model;
+using static PowerTrader.Model.PriceData;
+
+namespace Trader2020
 {
     partial class Form1
     {
@@ -63,6 +66,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+
+            this.Data.PriceDataChanged += new PriceDataChangedEventHandler(Data_PriceDataChanged1);
 
         }
 

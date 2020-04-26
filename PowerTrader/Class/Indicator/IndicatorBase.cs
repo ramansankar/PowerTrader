@@ -1,17 +1,14 @@
-﻿using PowerTrader.Enumerator;
+﻿using PowerTrader.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PowerTrader.Interface
+namespace PowerTrader.Class.Indicator
 {
-    public interface IIndicator
+    public class IndicatorBase:IIndicator
     {
-        
-      
-
 
     }
 }

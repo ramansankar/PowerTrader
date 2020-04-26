@@ -6,6 +6,7 @@ using PowerTrader.Model;
 using PowerTrader.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PowerTrader.Class
 {
@@ -23,29 +24,35 @@ namespace PowerTrader.Class
             }
         }
 
-        public async System.Threading.Tasks.Task<List<DataBar>> GetHistoricalDataAsync(SecurityType securityType, string ticker, BarSize barSize, DateTime? endDate = null)
+        public async Task<PriceData> GetHistoricalDataAsync(DataRequest Request)
         {
             var client = new AlphaVantageStocksClient(Constants.AlphaVantageApiKey);
-            var HistoricalBarCollection = new List<DataBar>();
+            var HistoricalBarCollection = new PriceData(Request);
+            //HistoricalBarCollection.PriceDataChanged += HistoricalBarCollection_PriceDataChanged;
             StockTimeSeries timeSeries;
-            switch (barSize)
+            switch (Request.BarSize)
             {
                 case BarSize.DAY:
-                    timeSeries = await client.RequestDailyTimeSeriesAsync(ticker, TimeSeriesSize.Full, adjusted: false);
+                    timeSeries = await client.RequestDailyTimeSeriesAsync(Request.Ticker, TimeSeriesSize.Full, adjusted: false);
                     break;
                 case BarSize.WEEK:
-                    timeSeries = await client.RequestWeeklyTimeSeriesAsync (ticker, adjusted: false);
+                    timeSeries = await client.RequestWeeklyTimeSeriesAsync (Request.Ticker, adjusted: false);
                     break;
                 case BarSize.MONTH:
-                    timeSeries = await client.RequestMonthlyTimeSeriesAsync(ticker, adjusted: false);
+                    timeSeries = await client.RequestMonthlyTimeSeriesAsync(Request.Ticker, adjusted: false);
                     break;
                 default:
-                    timeSeries = await client.RequestIntradayTimeSeriesAsync  (ticker, (IntradayInterval) barSize, TimeSeriesSize.Full);
+                    timeSeries = await client.RequestIntradayTimeSeriesAsync  (Request.Ticker, (IntradayInterval) Request.BarSize, TimeSeriesSize.Full);
                     break;
             }
 
-            ((List<StockDataPoint>) timeSeries.DataPoints).ForEach (bar=> HistoricalBarCollection.Add(new DataBar(bar)));
+            ((List<StockDataPoint>) timeSeries.DataPoints).ForEach (bar=> HistoricalBarCollection.SecurityPriceData.Add(new DataBar(bar)));
             return HistoricalBarCollection;
+        }
+
+        private void HistoricalBarCollection_PriceDataChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            Console.WriteLine("Something happened");
         }
     }
 }
